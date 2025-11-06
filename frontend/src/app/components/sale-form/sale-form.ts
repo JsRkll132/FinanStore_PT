@@ -26,7 +26,12 @@ export class SaleForm implements OnInit {
   }
 
   loadSales(): void {
-    this.api.getSales().subscribe(data => this.ventas = data );
+    this.api.getSales().subscribe(data => {
+        this.ventas = data.map(v => ({
+          ...v,
+          products: v.products ?? []   // si viene undefined, convertir a [] 
+        }));
+      });
   }
 
   toggleSelection(producto: Product): void {
@@ -58,5 +63,8 @@ export class SaleForm implements OnInit {
       console.error('Error al registrar la venta', error);
       alert('Hubo un error al registrar la venta.');
     });
+  }
+  getProductNames(venta: Sale): string {
+      return (venta.products ?? []).map(p => p.name).join(', ');
   }
 }

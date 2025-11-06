@@ -43,16 +43,16 @@
         <th>Productos Vendidos</th><th>Total</th><th>Fecha</th>
       </tr>
     </thead>
-    <tbody>
-      @for (venta of ventas; track venta.id) {
-        <tr>
-          <td>{{ venta.products  }}</td>
-          <td>{{ venta.totalAmount }}</td>
-          <td>{{ venta.date }}</td>
-        </tr>
-      } @empty {
-        <tr><td colspan="3">No se han registrado ventas.</td></tr>
-      }
-    </tbody>
+            <tbody>
+            @for (venta of ventas; track venta.id) {
+                <tr>
+                <td>{{ getProductNames(venta) }}</td>
+                <td>{{ venta.totalAmount }}</td>
+                <td>{{ venta.date }}</td>
+                </tr>
+            } @empty {
+                <tr><td colspan="3">No se han registrado ventas.</td></tr>
+            }
+            </tbody>
   </table>
 </div>

@@ -10,8 +10,8 @@ export interface Product {
 
 export interface Sale {
   id?: number;
+  products?: Product[];
   date?: string;
-  products: Product[];
   totalAmount?: number;
 }
 
