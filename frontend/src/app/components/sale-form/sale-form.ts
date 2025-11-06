@@ -26,7 +26,7 @@ export class SaleForm implements OnInit {
   }
 
   loadSales(): void {
-    this.api.getSales().subscribe(data => this.ventas = data);
+    this.api.getSales().subscribe(data => this.ventas = data );
   }
 
   toggleSelection(producto: Product): void {
