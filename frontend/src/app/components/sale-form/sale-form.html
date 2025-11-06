@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2>Ventas</h2>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="registrarVenta()" #ventaForm="ngForm">
+        <div class="form-group">
+          <label>Seleccionar productos</label>
+          @for (producto of productos; track producto.id) {
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [id]="'prod-'+producto.id"
+                (change)="toggleSelection(producto)"
+              >
+              <label class="form-check-label" [for]="'prod-'+producto.id">
+                {{ producto.name }} ({{ producto.price }})
+              </label>
+            </div>
+          } @empty {
+            <p>No hay productos disponibles para seleccionar.</p>
+          }
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary mt-2"
+          [disabled]="selectedProductIds.size === 0"
+        >
+          Registrar Venta
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Ventas Registradas</h3>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Productos Vendidos</th><th>Total</th><th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (venta of ventas; track venta.id) {
+        <tr>
+          <td>{{ venta.products }}</td>
+          <td>{{ venta.totalAmount }}</td>
+          <td>{{ venta.date }}</td>
+        </tr>
+      } @empty {
+        <tr><td colspan="3">No se han registrado ventas.</td></tr>
+      }
+    </tbody>
+  </table>
+</div>
