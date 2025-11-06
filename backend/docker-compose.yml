@@ -1,0 +1,18 @@
+
+services:
+  db:
+    image: postgres:15
+    container_name: finan_store_db
+    environment:
+      POSTGRES_USER: finanstore_user
+      POSTGRES_PASSWORD: finanstore_pwd
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5492:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pg_data:
+    driver: local
